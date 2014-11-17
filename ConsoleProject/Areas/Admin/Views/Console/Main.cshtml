@@ -1,0 +1,47 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>管理系统</title>
+    <link rel="stylesheet" type="text/css" href="/asset/consoleresource/src/css/frame_main.css">
+    <link rel="stylesheet" type="text/css" href="/asset/consoleresource/src/other/uiInput.css">
+    <link rel="stylesheet" type="text/css" href="/asset/consoleresource/src/other/uiTree/uiTree.css">
+    <script src="/asset/consoleresource/src/other/uiTree/uiTree.js"></script>
+    <script src="/asset/consoleresource/src/js/main.js"></script>
+</head>
+
+<body>
+
+    <div id="leftMenuArea">
+        <div id="menuTitleArea">
+            <span id="menuTitle">当前用户：admin</span>
+            <a id="logout">[退出]</a>
+        </div>
+        <div id="menuTreeArea">
+            <div id="menuTreeAreaInnerWrapper">
+                <div class="treeWrapper">
+                    <a class="treePackItem">类别1</a>
+                    <span class="treePack">
+                        <a class="treeItem" link="/admin/demo/create">内容页样式演示</a>
+                        <a class="treeItem" link="/admin/demo/list">内容页样式演示2</a>
+                        <a class="treePackItem">类别2</a>
+                        <span class="treePack">
+                            <a class="treeItem" link="http://www.baidu.com">百度</a>
+                            <a class="treeItem" link="http://www.google.com">谷歌</a>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="openedMenuItemsArea">
+        <div id="openedMenuItemsAreaInnerWrapper"></div>
+    </div>
+
+    <div id="contentArea">
+        <div id="contentAreaInnerWrapper"></div>
+    </div>
+
+</body>
+</html>

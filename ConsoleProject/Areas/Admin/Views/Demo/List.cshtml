@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="standaloneTip">
+    使用gridContentGroup进行复杂的布局
+</div>
+
+<!--使用gridContentGroup进行复杂的布局，同样，直接在td上指定width属性来定义宽度-->
+<!--和contentGroup一样，gridContentGroup的td内可放入contentGroupTitle或contentUnit-->
+<div class="gridContentGroup">
+    <table>
+        <tr>
+            <td width="800">
+                <div class="contentGroupTitle">
+                    内容组的大标题，可有可无，不需要就去掉contentGroupTitle元素
+                </div>
+                <!---->
+                <div class="contentUnit">
+                    <div class="title">单行填写框</div>
+                    <div class="content">
+                        <input type="text" class="inputText" />
+                    </div>
+                    <div class="tip">提示信息</div>
+                </div>
+                <!---->
+                <div class="contentUnit">
+                    <div class="title">无提示</div>
+                    <div class="content">
+                        <input type="text" class="inputText" />
+                    </div>
+                </div>
+                <!---->
+                <div class="contentUnit">
+                    <div class="title">单行填写框</div>
+                    <div class="content">
+                        <textarea class="inputText"></textarea>
+                    </div>
+                    <div class="tip" highlight>给此元素添加highLight属性以标红显示，配合表单验证使用</div>
+                </div>
+            </td>
+            <td>
+                <!---->
+                <div class="contentUnit" rowcontent>
+                    <div class="title">整行填写框</div>
+                    <div class="content">
+                        <textarea class="inputText"></textarea>
+                    </div>
+                    <div class="tip">在contentUnit上加rowContent属性</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!---->
+<div class="standaloneTip">
+    使用gridContentGroup进行复杂的布局
+</div>
+<div class="gridContentGroup">
+    <table>
+        <tr>
+            <td>
+                <div class="contentUnit">
+                    <div class="title">单行填写框</div>
+                    <div class="content">
+                        <input type="text" class="inputText" />
+                    </div>
+                </div>
+                <!---->
+                <div class="contentUnit">
+                    <div class="title">无提示</div>
+                    <div class="content">
+                        <input type="text" class="inputText" />
+                    </div>
+                </div>
+                <!---->
+                <div class="contentUnit">
+                    <div class="title">单行填写框</div>
+                    <div class="content">
+                        <textarea class="inputText"></textarea>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="contentUnit">
+                    <div class="title">单行填写框</div>
+                    <div class="content">
+                        <input type="text" class="inputText" />
+                    </div>
+                </div>
+                <!---->
+                <div class="contentUnit">
+                    <div class="title">无提示</div>
+                    <div class="content">
+                        <input type="text" class="inputText" />
+                    </div>
+                </div>
+                <!---->
+                <div class="contentUnit">
+                    <div class="title">单行填写框</div>
+                    <div class="content">
+                        <textarea class="inputText"></textarea>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <!---->
+                <div class="contentUnit" rowcontent>
+                    <div class="title">整行填写框</div>
+                    <div class="content">
+                        <textarea class="inputText"></textarea>
+                    </div>
+                    <div class="tip">在contentUnit上加rowContent属性</div>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>内容页</title>
+<link rel="stylesheet" type="text/css" href="../src/css/subPage.css">
+<link rel="stylesheet" type="text/css" href="../src/other/uiInput.css">
+</head>
+
+<body>
+    
+    <!---->
+    <!--列表-->
+    <!--在列表的thead的td中指定宽度来规定每列的宽度,不指定宽度的td自动适配剩余的宽度-->
+    <!--在td上加textAlignLeft属性另其文字居左对齐-->
+    <!--在td上加textAlignRight属性另其文字居左对齐-->
+    <div class="contentlist">
+    	<table>
+        	<thead>
+            	<tr>
+                	<td width="80">ID</td>
+                	<td width="120">时间</td>
+                	<td>标题</td>
+                	<td width="80">编辑</td>
+                	<td width="80">删除</td>
+                </tr>
+            </thead>
+            <tbody>
+            	<tr>
+                	<td>23123</td>
+                	<td>2222-22-22</td>
+                	<td textAlignLeft>啊萨达萨达萨达萨达</td>
+                	<td><a class="edit"></a></td>
+                	<td><a class="delete"></a></td>
+                </tr>
+            	<tr>
+                	<td>23123</td>
+                	<td>2222-22-22</td>
+                	<td textAlignLeft>啊萨达萨达萨达萨达</td>
+                	<td><a class="edit"></a></td>
+                	<td><a class="delete"></a></td>
+                </tr>
+            	<tr>
+                	<td>23123</td>
+                	<td>2222-22-22</td>
+                	<td textAlignLeft>啊萨达萨达萨达萨达</td>
+                	<td><a class="edit"></a></td>
+                	<td><a class="delete"></a></td>
+                </tr>
+            
+            </tbody>
+        </table>
+    </div>
+	
+    <!---->
+    <!--在contentGroup中放入contentUnit或contentGroupTitle-->
+    <!--在contentUnit的content中放入表单内容-->
+	<div class="contentGroup">
+    	<div class="contentGroupTitle">
+        	内容组的大标题，可有可无，不需要就去掉contentGroupTitle元素
+        </div>
+    	<!---->
+    	<div class="contentUnit">
+        	<div class="title">单行填写框</div>
+            <div class="content">
+            	<input type="text" class="inputText" />
+            </div> 
+            <div class="tip">提示信息</div>
+        </div>
+    	<!---->
+    	<div class="contentUnit">
+        	<div class="title">无提示</div>
+            <div class="content">
+            	<input type="text" class="inputText" />
+            </div> 
+        </div>
+    	<!---->
+    	<div class="contentUnit">
+        	<div class="title">单行填写框</div>
+            <div class="content">
+            	<textarea class="inputText"></textarea>
+            </div>
+            <div class="tip" highLight>给此元素添加highLight属性以标红显示，配合表单验证使用</div>
+        </div>
+    	<!---->
+    	<div class="contentUnit" rowContent>
+        	<div class="title">整行填写框</div>
+            <div class="content">
+            	<textarea class="inputText"></textarea>
+            </div>
+            <div class="tip">在contentUnit上加rowContent属性</div>
+        </div>
+    </div>
+    
+	<div class="contentGroup">
+    	<div class="contentGroupTitle">
+        	内容组的大标题，可有可无，不需要就去掉contentGroupTitle元素
+        </div>
+    	<!---->
+    	<div class="contentUnit">
+        	<div class="title">单选框</div>
+            <div class="content">
+                <div class="inputListSelect">
+                    <div class="inputListSelectListWrapper">
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="radio" name="asd" checked />
+                            <div class="inputListSelectItemContent">这是单选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="radio" name="asd" />
+                            <div class="inputListSelectItemContent">这是单选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="radio" name="asd" />
+                            <div class="inputListSelectItemContent">这是单选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="radio" name="asd" />
+                            <div class="inputListSelectItemContent">这是单选</div>
+                        </label>
+                    </div>
+                </div>
+            </div> 
+            <div class="tip">input类型为radio即为单选</div>
+        </div>
+    	<!---->
+    	<div class="contentUnit">
+        	<div class="title">复选框</div>
+            <div class="content">
+                <div class="inputListSelect">
+                    <div class="inputListSelectListWrapper">
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" checked />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" checked />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                    </div>
+                </div>
+            </div> 
+            <div class="tip">input类型为checkbox即为复选</div>
+        </div>
+    	<!---->
+    	<div class="contentUnit">
+        	<div class="title">右边弹框</div>
+            <div class="content">
+                <div class="inputListSelect" listAtRight>
+                    <div class="inputListSelectListWrapper">
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" checked />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" checked />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                    </div>
+                </div>
+            </div> 
+            <div class="tip">在inputListSelect上添加listAtRight属性</div>
+        </div>
+    	<!---->
+    	<div class="contentUnit">
+        	<div class="title">上边弹框</div>
+            <div class="content">
+                <div class="inputListSelect" listAtTop>
+                    <div class="inputListSelectListWrapper">
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" checked />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" checked />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                    </div>
+                </div>
+            </div> 
+            <div class="tip">在inputListSelect上添加listAtTop属性</div>
+        </div>
+    	<!---->
+    	<div class="contentUnit">
+        	<div class="title">右上边弹框</div>
+            <div class="content">
+                <div class="inputListSelect" listAtRightTop>
+                    <div class="inputListSelectListWrapper">
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" checked />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" checked />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="checkbox" />
+                            <div class="inputListSelectItemContent">这是复选</div>
+                        </label>
+                    </div>
+                </div>
+            </div> 
+            <div class="tip">在inputListSelect上添加listAtRightTop属性</div>
+        </div>
+    </div>
+    
+    <!---->
+    <!--独立信息提示-->
+    <div class="standaloneTip">
+    	独立提示信息
+    </div>
+    <div class="standaloneTip" highLight>
+    	独立提示信息，给此元素添加highLight属性以标红显示，配合表单验证使用
+    </div>
+    
+    <!---->
+    <!--按钮面板-->
+    <!--在按钮面板中放入inputButton、splitter、inputText-->
+    <div class="inputSet">
+    	<a class="inputButton" leftIcon style="background-image:url(../src/media/icon_return.png)">退出</a>
+    	<a class="inputButton" leftIcon style="background-image:url(../src/media/icon_plus.png)">添加</a>
+        <div class="splitter"></div>
+        <input type="text" class="inputText" />
+    	<a class="inputButton" leftIcon style="background-image:url(../src/media/icon_search.png)">搜索</a>
+        <div class="splitter"></div>
+        <div class="infoWrapper">
+        	<div style="margin-top:8px;">其他信息或元素要使用infoWrapper进行包裹，视情况需要，设置子元素的margin值以对齐其他元素</div>
+        </div>
+        <div class="splitter"></div>
+    	<a class="inputButton" leftIcon style="background-image:url(../src/media/icon_disk.png)">提交</a>
+    </div>
+
+</body>
+</html>
