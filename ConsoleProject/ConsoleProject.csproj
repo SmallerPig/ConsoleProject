@@ -1120,6 +1120,7 @@
     <Content Include="asset\ConsoleResource\src\css\frame_main.css" />
     <Content Include="asset\ConsoleResource\src\css\subPage.css" />
     <Content Include="asset\ConsoleResource\src\demo.html" />
+    <Content Include="asset\src\js\jquery-1.7.1.min.js" />
     <Content Include="asset\ConsoleResource\src\js\login.js" />
     <Content Include="asset\ConsoleResource\src\js\main.js" />
     <Content Include="asset\ConsoleResource\src\js\simple-validator.min.js" />
@@ -1180,13 +1181,6 @@
     <Content Include="asset\src\media\bg_style.png" />
     <Content Include="asset\src\media\bg_weibo.png" />
     <Content Include="asset\src\media\bg_weixin.png" />
-    <Content Include="asset\src_temp\back.jpg" />
-    <Content Include="asset\src_temp\bottom.jpg" />
-    <Content Include="asset\src_temp\front.jpg" />
-    <Content Include="asset\src_temp\hp.jpg" />
-    <Content Include="asset\src_temp\left.jpg" />
-    <Content Include="asset\src_temp\right.jpg" />
-    <Content Include="asset\src_temp\top.jpg" />
     <Content Include="Global.asax" />
     <Content Include="oldbrowser.html" />
     <Content Include="readme.txt" />
@@ -1205,7 +1199,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="asset\src\js\" />
     <Folder Include="asset\src\other\" />
   </ItemGroup>
   <ItemGroup>
