@@ -13,20 +13,8 @@ namespace ConsoleProject.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return new HttpNotFoundResult("the page you request is not found!");
         }
 
-
-        public ActionResult House()
-        {
-            return View();
-        }
-
-
-        public ActionResult Iv()
-        {
-            return View();
-
-        }
     }
 }
