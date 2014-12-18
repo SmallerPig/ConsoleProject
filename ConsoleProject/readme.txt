@@ -13,3 +13,18 @@
 
 已知问题：
 2014年11月17日11:09:32 创建新项目时最好将调试端口更改！
+
+SQL
+CREATE TABLE [dbo].[Admin](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserName] [nvarchar](250) NOT NULL,
+	[Password] [nvarchar](250) NOT NULL,
+ CONSTRAINT [PK_Admin] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+INSERT INTO [dbo].[Admin]("UserName","Password") values("admin","cbWwnCsPNX2HCXnBSsCZKw==")
