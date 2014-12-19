@@ -28,3 +28,4 @@ CREATE TABLE [dbo].[Admin](
 GO
 
 INSERT INTO [dbo].[Admin]("UserName","Password") values("admin","cbWwnCsPNX2HCXnBSsCZKw==")
+

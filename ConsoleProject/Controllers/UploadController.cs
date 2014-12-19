@@ -19,7 +19,7 @@ namespace ConsoleProject.Controllers
 
         public string Image()
         {
-            if (System.Web.HttpContext.Current.Session["Admin"] == null)
+            if (System.Web.HttpContext.Current.Session["username"] == null)
             {
                 return "nologin";
             }
