@@ -14,8 +14,8 @@
 
     <div id="leftMenuArea">
         <div id="menuTitleArea">
-            <span id="menuTitle">当前用户：admin</span>
-            <a id="logout">[退出]</a>
+            <span id="menuTitle">当前用户：@*Session["username"]*@</span>
+            <a id="logout" href="@Url.Action("Exit")">[退出]</a>
         </div>
         <div id="menuTreeArea">
             <div id="menuTreeAreaInnerWrapper">
