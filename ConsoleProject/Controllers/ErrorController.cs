@@ -13,11 +13,13 @@ namespace ConsoleProject.Controllers
 
         public ActionResult Http404()
         {
+            Response.StatusCode = 404;
             return View("404");
         }
 
         public ActionResult Http500()
         {
+            Response.StatusCode = 500;
             return View("500");
         }
 
