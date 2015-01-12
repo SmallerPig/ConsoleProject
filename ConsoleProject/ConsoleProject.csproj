@@ -171,6 +171,7 @@
     <Compile Include="Exception Handling\HandleErrorActionAttribute.cs" />
     <Compile Include="Exception Handling\HandleErrorActionInvoker.cs" />
     <Compile Include="Exception Handling\HttpContextExtensions.cs" />
+    <Compile Include="Extended\ExtendedHtmlHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
