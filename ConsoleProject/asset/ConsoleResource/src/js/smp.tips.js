@@ -49,7 +49,7 @@ smp.show = function(data,type,duration){
 				+"border-radius: 8px; text-align: center; min-height:16px; line-height:16px;font-size:14px; box-shadow:rgba(0,0,0,0.3) 1px 1px 4px;" + background;
 	tipsContainer.setAttribute("style",strStyle);
 	var dataContainer = document.createElement("span");
-	dataContainer.innerText = data;	
+	dataContainer.innerHTML = data;	
 	tipsContainer.appendChild(dataContainer);
 
 	document.getElementsByTagName("body")[0].appendChild(tipsContainer);
