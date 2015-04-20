@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
+using System.Web.Routing;
+using ConsoleProject.Areas.Admin.Models;
 
 namespace ConsoleProject.Areas.Admin.Controllers
 {
@@ -180,6 +182,53 @@ namespace ConsoleProject.Areas.Admin.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// 初始化分页类,
+        /// </summary>
+        /// <param name="pager">具有action名称,总计条目数量以及当前页码的SmpPager类</param>
+        /// <param name="routeValue">需要传递的额外的get参数
+        ///     例如key=keyword,company=1等等!
+        /// </param>
+        public void InitPage(SmpPager pager, RouteValueDictionary routeValue = null)
+        {
+
+            routeValue = routeValue ?? new RouteValueDictionary();
+
+            RouteValueDictionary firstPageRouteValue = new RouteValueDictionary(routeValue);
+            RouteValueDictionary perPageRouteValue = new RouteValueDictionary(routeValue);
+            RouteValueDictionary nextPageRouteValue = new RouteValueDictionary(routeValue);
+            RouteValueDictionary lastPageRouteValue = new RouteValueDictionary(routeValue);
+
+            pageCount = (pager.Count % pageSize == 0) ? pager.Count / pageSize : pager.Count / pageSize + 1;
+            if (pager.PageIndex >= pageCount && pageCount > 0)
+            {
+                pager.PageIndex = pageCount;
+            }
+
+            firstPageRouteValue["pageIndex"] = 1;
+
+
+            perPageRouteValue["pageIndex"] = (pager.PageIndex - 1) < 1 ? 1 : (pager.PageIndex - 1);
+
+            nextPageRouteValue["pageIndex"] = (pager.PageIndex + 1) > pageCount ? pageCount : (pager.PageIndex + 1);
+
+            lastPageRouteValue["pageIndex"] = pageCount;
+
+
+            string firstPage = Url.Action(pager.ActionName, firstPageRouteValue);
+            string perPage = Url.Action(pager.ActionName, perPageRouteValue);
+            string nextPage = Url.Action(pager.ActionName, nextPageRouteValue);
+            string lastPage = Url.Action(pager.ActionName, lastPageRouteValue);//"/admin/" + "House" + "/" + "List" + "?pageIndex=" + pageCount;
+            ViewData["firstPage"] = firstPage;
+            ViewData["perPage"] = perPage;
+            ViewData["nextPage"] = nextPage;
+            ViewData["pageIndex"] = pager.PageIndex;
+            ViewData["pageCount"] = pageCount;
+            ViewData["lastPage"] = lastPage;
+        }
+
+
 
     }
 }
