@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using ConsoleProject.Filter;
 
 namespace ConsoleProject
 {
@@ -7,7 +8,7 @@ namespace ConsoleProject
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new LogExceptionFileAttribute());
         }
     }
 }
