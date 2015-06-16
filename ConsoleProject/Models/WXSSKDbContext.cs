@@ -15,7 +15,12 @@ namespace ConsoleProject.Models
 
         }
 
-        public DbSet<Demo> Demo { get; set; }
+        //public DbSet<Demo> Demo { get; set; }
+
+        public DbSet<Admin> Admin { get; set; }
+
+        public DbSet<LoginLog> LoginLog { get; set; }
+
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
