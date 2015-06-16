@@ -170,7 +170,7 @@
 		type.Url = BaseUrl + "flash/";
 		type.Dir = BaseDir == "" ? "" : BaseDir + "flash/";
 		type.MaxSize = 0;
-		type.AllowedExtensions = new string[] { "swf", "flv" };
+		type.AllowedExtensions = new string[] { "swf", "flv","mp4" };
 		type.DeniedExtensions = new string[] { };
 	}
 
