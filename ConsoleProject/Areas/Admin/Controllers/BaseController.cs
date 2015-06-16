@@ -6,10 +6,11 @@ using System.Web.Mvc;
 using System.IO;
 using System.Web.Routing;
 using ConsoleProject.Areas.Admin.Models;
+using ConsoleProject.Models;
 
 namespace ConsoleProject.Areas.Admin.Controllers
 {
-    public abstract class BaseController<Tentity> : Controller where Tentity : WXSSK.Common.Console.ConsoleEntity, new()
+    public abstract class BaseController<Tentity> : Controller where Tentity : new()
     {
         private String exceptionFileName = "exception.txt";
 
@@ -17,13 +18,9 @@ namespace ConsoleProject.Areas.Admin.Controllers
         protected int pageSize = 20;
         protected int count = 0;
         protected int pageCount = 0;
-        protected string perPage = "#";
-        protected string nextPage = "#";
 
-        protected IList<Tentity> list;
+        public WXSSKDbContext DbContext = new WXSSKDbContext();
 
-        protected Tentity entity = new Tentity();
-        protected WXSSK.Common.Console.IConsoleListable<Tentity> helper;
 
         protected override void OnActionExecuting(System.Web.Mvc.ActionExecutingContext
            filterContext)
@@ -34,58 +31,6 @@ namespace ConsoleProject.Areas.Admin.Controllers
             }
         }
 
-
-        public virtual ActionResult List(string keyword)
-        {
-            InitList(false);
-            return View(list);
-        }
-
-        [HttpPost]
-        public JsonResult List(int id)
-        {
-            Tentity entity = helper.GetById(id);
-            helper.ToRecycle(entity);
-            return Json("success");
-        }
-
-
-        protected void InitList(bool status)
-        {
-            try
-            {
-                if (!string.IsNullOrEmpty(this.Request.QueryString["pageIndex"]))
-                {
-                    pageIndex = int.Parse(this.Request.QueryString["pageIndex"]);
-                }
-                if (pageIndex < 1)
-                {
-                    pageIndex = 1;
-                }
-            }
-            catch
-            {
-                pageIndex = 1;
-            }
-            count = helper.GetCount(status);
-            pageCount = (count % pageSize == 0) ? count / pageSize : count / pageSize + 1;
-            if (pageIndex >= pageCount && pageCount > 0)
-            {
-                pageIndex = pageCount;
-            }
-            list = helper.GetList(pageSize * (pageIndex - 1), pageSize, status);
-            GetList();
-            string actionName = status ? "Recycle" : "List";
-
-            perPage = "/admin/" + entity.GetType().Name + "/" + actionName + "?pageIndex=" + (pageIndex - 1).ToString();
-            nextPage = "/admin/" + entity.GetType().Name + "/" + actionName + "?pageIndex=" + (pageIndex + 1).ToString();
-            ViewData["perPage"] = perPage;
-            ViewData["nextPage"] = nextPage;
-            ViewData["pageIndex"] = pageIndex;
-            ViewData["pageCount"] = pageCount;
-
-        }
-
         /// <summary>
         /// 页面Model获得函数 ----模板方法模式
         /// </summary>
@@ -93,89 +38,32 @@ namespace ConsoleProject.Areas.Admin.Controllers
         { }
 
 
-        public ActionResult Recycle()
+
+        /// <summary>
+        /// 设定每个页面呈现数量
+        /// </summary>
+        /// <param name="size"></param>
+        public void SetPageSize(int size)
         {
-            InitList(true);
-            return View(list);
+            this.pageSize = size;
         }
 
 
 
-        [HttpPost]
-        public JsonResult Recycle(int id)
-        {
-            Tentity entity = helper.GetById(id);
-            helper.Restore(entity);
-            return Json("success");
-        }
-
-
-        public ActionResult Details(int id)
-        {
-            Tentity entity = helper.GetById(id);
-            helper.Delete(entity);
-            return RedirectToAction("List");
-        }
-
-
+        /// <summary>
+        /// 创建页面,不包含任何逻辑处理
+        /// </summary>
+        /// <returns></returns>
         public virtual ActionResult Create()
         {
             return View();
         }
 
-        public ActionResult ToRecycle(int id)
-        {
-            Tentity entity = helper.GetById(id);
-            helper.ToRecycle(entity);
-            return RedirectToAction("List");
-        }
-
-        public ActionResult Restore(int id)
-        {
-            Tentity entity = helper.GetById(id);
-            helper.Restore(entity);
-            return RedirectToAction("Recycle");
-        }
 
 
-        public virtual ActionResult Edit(int id)
-        {
-            Tentity entity = helper.GetById(id);
-            return View(entity);
-        }
 
-        [HttpPost]
-        public virtual JsonResult Delete(int id)
-        {
-            try
-            {
-                Tentity entity = helper.GetById(id);
-                helper.Delete(entity);
-                return Json("success");
-            }
-            catch
-            {
-                return Json("error");
-            }
-        }
 
-        protected override void OnException(ExceptionContext filterContext)
-        {
-            Log(filterContext);
-            base.OnException(filterContext);
-        }
 
-        private void Log(ExceptionContext filterContext)
-        {
-            string fileName = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, exceptionFileName);
-            StreamWriter sw = System.IO.File.AppendText(fileName);
-
-            System.DateTime dt = DateTime.Now;
-            string ip = WXSSK.Common.IPHelp.ClientIP;
-            string url = Request.Url.ToString();
-            sw.Write(string.Format("Time:{0:G}; ClientIp:{1}; URL:{2}; Message:{3}\n", dt, ip, url, filterContext.Exception.Message));
-            sw.Close();
-        }
 
 
         public ActionResult Error()
@@ -200,7 +88,7 @@ namespace ConsoleProject.Areas.Admin.Controllers
             RouteValueDictionary nextPageRouteValue = new RouteValueDictionary(routeValue);
             RouteValueDictionary lastPageRouteValue = new RouteValueDictionary(routeValue);
 
-            pageCount = (pager.Count % pageSize == 0) ? pager.Count / pageSize : pager.Count / pageSize + 1;
+            pageCount = pager.GetPageCount(pageSize);
             if (pager.PageIndex >= pageCount && pageCount > 0)
             {
                 pager.PageIndex = pageCount;
@@ -216,10 +104,10 @@ namespace ConsoleProject.Areas.Admin.Controllers
             lastPageRouteValue["pageIndex"] = pageCount;
 
 
-            string firstPage = Url.Action(pager.ActionName, firstPageRouteValue);
-            string perPage = Url.Action(pager.ActionName, perPageRouteValue);
-            string nextPage = Url.Action(pager.ActionName, nextPageRouteValue);
-            string lastPage = Url.Action(pager.ActionName, lastPageRouteValue);//"/admin/" + "House" + "/" + "List" + "?pageIndex=" + pageCount;
+            string firstPage = Url.Action(RouteData.Values["action"].ToString(), firstPageRouteValue);
+            string perPage = Url.Action(RouteData.Values["action"].ToString(), perPageRouteValue);
+            string nextPage = Url.Action(RouteData.Values["action"].ToString(), nextPageRouteValue);
+            string lastPage = Url.Action(RouteData.Values["action"].ToString(), lastPageRouteValue);//"/admin/" + "House" + "/" + "List" + "?pageIndex=" + pageCount;
             ViewData["firstPage"] = firstPage;
             ViewData["perPage"] = perPage;
             ViewData["nextPage"] = nextPage;
