@@ -1,0 +1,31 @@
+﻿@model Sap.Areas.Admin.Models.ContentUnitModel
+<div class="contentUnit">
+    <div class="title">@Model.Title</div>
+    <div class="content">
+        <div class="inputListSelect" listatright>
+            <div class="inputListSelectListWrapper">
+                <label class="inputListSelectItem">
+                    <input class="inputListSelectItemInput" type="radio" name="@Model.Name" value="0" @(string.IsNullOrWhiteSpace(Model.DefaultValue)?"checked":"") />
+                    <div class="inputListSelectItemContent">请选择</div>
+                </label>
+                @if (Model.SelectorItems != null)
+                {
+                    foreach (var selectorItem in Model.SelectorItems)
+                    {
+                        <label class="inputListSelectItem">
+                            <input class="inputListSelectItemInput" type="radio" name="@Model.Name" value="@selectorItem.Value" @(Model.DefaultValue == selectorItem.Value?"checked":"") />
+                            <div class="inputListSelectItemContent">@selectorItem.Text</div>
+                        </label>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    @{
+        if (!string.IsNullOrWhiteSpace(Model.Tips))
+        {
+            <div class="tip">@Model.Tips</div>
+
+        }
+    }
+</div>

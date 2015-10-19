@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Sap.Areas.Admin.Models.PathTipModel>
+
+<div class="pathTip">
+    @{
+        if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                if (item!= null)
+                {
+                <a class="pathTipItem" href="@item.Url">@item.Title</a>
+  
+                }
+            }
+        }
+    }
+</div>

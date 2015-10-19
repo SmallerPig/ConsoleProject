@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Test";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+@section Head{
+<script src="~/asset/ConsoleResource/ckeditor/ckeditor.js"></script>
+<script src="~/asset/ConsoleResource/ckfinder/ckfinder.js"></script>
+}
+<form method="post">
+    <textarea rows="30" cols="50" name="content">请输入.</textarea>
+
+    <script type="text/javascript">
+        
+        if (typeof (CKEDITOR) == "undefined") {
+            alert("加载CKEditor失败");
+        }
+        else {
+            var editor = CKEDITOR.replace('content');
+            CKFinder.setupCKEditor(editor, './ckfinder/');
+        }
+    </script> 
+    
+    <input type="submit" name="name" value="submit" />
+</form>
+
+
+

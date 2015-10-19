@@ -13,13 +13,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ConsoleProject</RootNamespace>
     <AssemblyName>ConsoleProject</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,6 +39,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CKFinder, Version=2.4.0.2631, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
@@ -46,6 +49,9 @@
     <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\binbak\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=a20767533a162583, processorArchitecture=MSIL">
@@ -76,8 +82,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\binbak\Newtonsoft.Json4.5\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Transactions" />
@@ -85,12 +96,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -103,9 +111,6 @@
     <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
       <Private>True</Private>
@@ -148,6 +153,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WXSSK.Common, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\WXSSK.Common.dll</HintPath>
@@ -158,11 +164,15 @@
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\ConsoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\DemoController.cs" />
-    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Areas\Admin\Models\ContentUnitModel.cs" />
+    <Compile Include="Areas\Admin\Models\PathTipModel.cs" />
+    <Compile Include="Areas\Admin\Models\SmpPager.cs" />
     <Compile Include="Controllers\ViewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProduceController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="Demo.ashx.cs">
+      <DependentUpon>Demo.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Exception Handling\ErrorMessageHandler.cs" />
     <Compile Include="Exception Handling\ExceptionDetail.cs" />
     <Compile Include="Exception Handling\ExceptionPolicyAttribute.cs" />
@@ -172,14 +182,17 @@
     <Compile Include="Exception Handling\HandleErrorActionInvoker.cs" />
     <Compile Include="Exception Handling\HttpContextExtensions.cs" />
     <Compile Include="Extended\ExtendedHtmlHelper.cs" />
+    <Compile Include="Extended\TimeHttpModule.cs" />
+    <Compile Include="Filter\LogExceptionFileAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IoC\TransactionCallHandler.cs" />
-    <Compile Include="IoC\TransactionCallHandlerAttribute.cs" />
-    <Compile Include="IoC\UnityControllerFactory.cs" />
+    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Demo.cs" />
     <Compile Include="Models\GeneralMovieInfo.cs" />
+    <Compile Include="Models\LoginLog.cs" />
+    <Compile Include="Models\ModelBase.cs" />
+    <Compile Include="Models\TestModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WXSSKDbContext.cs" />
     <Compile Include="Models\Produce.cs" />
@@ -483,6 +496,12 @@
     <Content Include="asset\ConsoleResource\ckeditor\plugins\uicolor\yui\assets\picker_thumb.png" />
     <Content Include="asset\ConsoleResource\ckeditor\plugins\uicolor\yui\assets\yui.css" />
     <Content Include="asset\ConsoleResource\ckeditor\plugins\uicolor\yui\yui.js" />
+    <Content Include="asset\ConsoleResource\ckeditor\plugins\video\dialogs\video.js" />
+    <Content Include="asset\ConsoleResource\ckeditor\plugins\video\docs\install.html" />
+    <Content Include="asset\ConsoleResource\ckeditor\plugins\video\docs\styles.css" />
+    <Content Include="asset\ConsoleResource\ckeditor\plugins\video\images\icon.png" />
+    <Content Include="asset\ConsoleResource\ckeditor\plugins\video\images\placeholder.png" />
+    <Content Include="asset\ConsoleResource\ckeditor\plugins\video\plugin.js" />
     <Content Include="asset\ConsoleResource\ckeditor\plugins\wsc\dialogs\ciframe.html" />
     <Content Include="asset\ConsoleResource\ckeditor\plugins\wsc\dialogs\tmpFrameset.html" />
     <Content Include="asset\ConsoleResource\ckeditor\plugins\wsc\dialogs\wsc.css" />
@@ -1190,7 +1209,6 @@
     <Content Include="Global.asax" />
     <Content Include="oldbrowser.html" />
     <Content Include="readme.txt" />
-    <Content Include="Views\Home\iv.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1204,7 +1222,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="asset\src\other\" />
   </ItemGroup>
   <ItemGroup>
@@ -1236,12 +1253,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\House.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Iv.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Error\404.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -1249,6 +1260,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.Mobile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Demo\Test.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Demo.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ContentUnitEditor.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ContentUnitPassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ContentUnitSelector.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ContentUnitText.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ContentUnitTextArea.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ContentUnitUploader.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\PathTip.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1268,9 +1299,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>29382</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:29384/</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:29384/</IISAppRootUrl>
+          <IISUrl>http://localhost:29400/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

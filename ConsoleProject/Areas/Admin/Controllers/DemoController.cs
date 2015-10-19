@@ -20,5 +20,23 @@ namespace ConsoleProject.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public ActionResult Test()
+        {
+            //string action = RouteData.Values["action"].ToString();
+
+            return Json(RouteData, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Test(string content)
+        {
+            string action = RouteData.Values["action"].ToString();
+
+            return Json(RouteData);
+        }
+
+
     }
 }

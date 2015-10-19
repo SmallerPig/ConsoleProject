@@ -1,0 +1,29 @@
+﻿@model Sap.Areas.Admin.Models.ContentUnitModel
+
+<!--@Model.Name begin -->
+<div class="contentUnit">
+    <div class="title">@Model.Title</div>
+    <div class="content">
+        <div class="uploadHolder" id="@(Model.Name)UploaderHolder"></div>
+        <input type="hidden" value="@Model.DefaultValue" id="@(Model.Name)UploaderValueHolder" name="@(Model.Name)" @(string.IsNullOrWhiteSpace(Model.ValidatorRules) ? "" : "s-validator-rules=" + Model.ValidatorRules + "") s-validator-onfail="alert('尚未上传文件');" />
+        <script type="application/javascript">
+            var sampleUpload1=simple.uploader.create({
+                appendTo:document.getElementById("@(Model.Name)UploaderHolder"),
+                url:"/Upload/File",
+                valueBindTo:document.getElementById("@(Model.Name)UploaderValueHolder"),
+            	limit:{							
+				    fileSizeMax:4096,		
+				    fileFormat:"@(string.IsNullOrWhiteSpace(Model.UploaderAccpect)?"*":Model.UploaderAccpect)",//jpeg|jpg|png|doc|docx|xls|xlsx|mp4
+			},
+            });
+        </script>
+    </div>
+    @{
+        if (!string.IsNullOrWhiteSpace(Model.Tips))
+        {
+            <div class="tip">@Model.Tips</div>
+
+        }
+    }
+</div>
+<!--@Model.Name Over -->

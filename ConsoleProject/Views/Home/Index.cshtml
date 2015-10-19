@@ -2,4 +2,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index of PC</h2>
+<form action="@Url.Action("Index")" method="post">
+    CreateTime:<input type="text" name="CreateTime" value=" " />
+    
+    Status:<input type="text" name="Status" value="" />
+    
+    
+    Date; <input type="text" name="Datetest" value=" " />
+    
+    <input type="submit" name="submit" value="submit" />
+</form>

@@ -21,6 +21,8 @@ namespace ConsoleProject.Models
 
         public DbSet<LoginLog> LoginLog { get; set; }
 
+        public DbSet<TestModel> TestModel { get; set; }
+
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

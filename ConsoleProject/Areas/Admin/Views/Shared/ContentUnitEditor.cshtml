@@ -1,0 +1,25 @@
+﻿@model Sap.Areas.Admin.Models.ContentUnitModel
+           
+<!--@Model.Name begin -->
+
+<div class="contentGroup">
+    <div class="contentGroupTitle">@Model.Title</div>
+    <div class="contentUnit" rowcontent>
+        <div class="content">
+            <textarea rows="30" cols="50" id="@Model.Name" name="@Model.Name">@Model.DefaultValue</textarea>
+            <script type="text/javascript">
+
+                if (typeof (CKEDITOR) == "undefined") {
+                    alert("加载CKEditor失败");
+                }
+                else {
+                    var editor = CKEDITOR.replace('@Model.Name');
+                    CKFinder.setupCKEditor(editor, './ckfinder/');
+                }
+            </script>
+        </div>
+    </div>
+</div>
+
+
+<!--@Model.Name Over -->

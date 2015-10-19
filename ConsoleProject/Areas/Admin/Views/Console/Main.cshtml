@@ -14,7 +14,7 @@
 
     <div id="leftMenuArea">
         <div id="menuTitleArea">
-            <span id="menuTitle">当前用户：@*Session["username"]*@</span>
+            <span id="menuTitle">当前用户：@Request.Cookies.Get("admin")["username"]</span>
             <a id="logout" href="@Url.Action("Exit")">[退出]</a>
         </div>
         <div id="menuTreeArea">

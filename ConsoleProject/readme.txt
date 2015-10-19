@@ -1,5 +1,6 @@
 增加记录
 
+2015年10月19日17:16:28 ： 增加后台的编辑单元
 2014年11月26日14:40:30 ： 修复admin登陆页默认登陆按钮无登陆事件的bug
 2014年11月26日14:39:39 ： 修改配置文件默认为调试状态
 
@@ -14,11 +15,14 @@
 已知问题：
 2014年11月17日11:09:32 创建新项目时最好将调试端口更改！
 
-SQL
+--SQL
+--Admin
 CREATE TABLE [dbo].[Admin](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CreateTime] [datetime] NOT NULL DEFAULT getdate(),
 	[UserName] [nvarchar](250) NOT NULL,
 	[Password] [nvarchar](250) NOT NULL,
+	[Status] [int] NOT NULL DEFAULT 1,
  CONSTRAINT [PK_Admin] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -29,3 +33,16 @@ GO
 
 INSERT INTO [dbo].[Admin]("UserName","Password") values("admin","cbWwnCsPNX2HCXnBSsCZKw==")
 
+-- LoginLog
+
+CREATE TABLE [dbo].[LoginLog](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CreateTime] [datetime] NOT NULL DEFAULT getdate(),
+	[UserName] [nvarchar](50) NOT NULL,
+	[IpAddress] [nvarchar](50) NOT NULL,
+	[Status] [int] NOT NULL DEFAULT 1,
+ CONSTRAINT [PK_LoginLog] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]

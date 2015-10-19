@@ -1,4 +1,5 @@
-﻿@{
+﻿@using ConsoleProject.Areas.Admin.Models
+@{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
@@ -13,6 +14,36 @@
         }
     }
 </script>
+
+<div class="contentGroup">
+    <div class="contentGroupTitle">
+        基本信息
+    </div>
+    <!--普通文本-->
+    @Html.Partial("ContentUnitText", new ContentUnitModel() { Name = "Guid", Title = "项目编号", Tips = "必填。不能与其他编号重复。", ValidatorRules = "required", MetaData = Model })
+    <!--文本区域-->
+    @Html.Partial("ContentUnitTextArea", new ContentUnitModel() { Name = "Remark", Title = "备注", Tips = "选填。备注信息可用于检索。", MetaData = Model })
+    <!--密码区域-->
+    @Html.Partial("ContentUnitPassword", new ContentUnitModel() { Name = "oldPassword", Title = "当前密码", Tips = "必填。", ValidatorRules = "required", MetaData = Model })
+    <!--选择框：单选-->
+    @Html.Partial("ContentUnitSelector", new ContentUnitModel() { Name = "CanInjoin", Title = "用户可报名", Tips = "必填。", MetaData = Model, SelectorItems = new[] { new SelectorItem() { Text = "支持报名", Value = "True" }, new SelectorItem() { Text = "不支持报名", Value = "False" }, } })
+    }
+    <!--上传控件-->
+    @Html.Partial("ContentUnitUploader", new ContentUnitModel() { Name = "HeaderPic", Title = "照片头像", Tips = "必填。图片建议使用长宽在256px-512px的jpg图片。。", MetaData = Model, ValidatorRules = "required", UploaderAccpect = "jpg|jpeg|png|gif" })
+
+
+
+
+
+
+
+
+</div>
+<!--ckeditor-->
+@Html.Partial("ContentUnitEditor", new ContentUnitModel() { Name = "Content", Title = "内容", Tips = "选填。备注信息可用于检索。", ValidatorRules = "required", MetaData = Model })
+
+
+
 
     <!---->
 <!--列表-->

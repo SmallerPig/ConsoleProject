@@ -1,0 +1,14 @@
+﻿@model Sap.Areas.Admin.Models.ContentUnitModel
+<div class="contentUnit">
+    <div class="title">@Model.Title</div>
+    <div class="content">
+        <textarea class="inputText" name="@Model.Name"  s-validator-rules="@Model.ValidatorRules" s-validator-onfail="this.setAttribute('error','');" s-validator-onsucceed="this.removeAttribute('error');" >@Model.DefaultValue</textarea>
+    </div>
+    @{
+        if (!string.IsNullOrWhiteSpace(Model.Tips))
+        {
+    <div class="tip">@Model.Tips</div>
+
+        }
+    }
+</div>

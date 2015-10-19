@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Error";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+<div class="standaloneTip" highlight>
+    @ViewData["ErrorMessage"]
+</div>
+
+<div class="inputSet">
+    <a class="inputButton" lefticon style="background-image:url(/asset/ConsoleResource/src/media/icon_return.png)" onclick="window.history.back()">返回</a>
+</div>
